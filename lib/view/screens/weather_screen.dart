@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weathe_app/blocs/cubits/get_weather_cubit/get_weather_cubit.dart';
@@ -6,6 +5,7 @@ import 'package:weathe_app/blocs/cubits/get_weather_cubit/get_weather_states.dar
 import 'package:weathe_app/view/screens/search_screen.dart';
 import 'package:weathe_app/view/widgets/no_weather_widget.dart';
 
+import '../widgets/weather_loading_widget.dart';
 import '../widgets/weather_widget.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -21,7 +21,7 @@ class WeatherScreen extends StatelessWidget {
           IconButton(
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SearchScreen()));
+                    MaterialPageRoute(builder: (context) => const SearchScreen()));
               },
               icon: const Icon(Icons.search))
         ],
@@ -31,10 +31,12 @@ class WeatherScreen extends StatelessWidget {
           if(state is WeatherInitialState){
             return const NoWeatherWidget();
           }
-          else if(state is WeatherLoadedState){
-            return  WeatherWidget();
+          else if(state is WeatherSuccessState){
+            return   WeatherWidget();
             }
-          else{
+          else if(state is WeatherLoadingState){
+            return const WeatheLoadingWidget();
+          }else{
             return const Text('Oops! There was an error loading the weather');
           }
         },

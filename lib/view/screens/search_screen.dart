@@ -15,7 +15,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Search a City'),
+        title: const Text('Search a City'),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -28,8 +28,8 @@ class SearchScreen extends StatelessWidget {
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 25.h,horizontal: 10.h),
               labelText: 'Search',
-              suffixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
+              suffixIcon: const Icon(Icons.search),
+              border: const OutlineInputBorder(),
               hintText: 'Enter City Name',
             ),
           ),
